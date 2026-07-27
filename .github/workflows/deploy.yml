@@ -25,13 +25,10 @@ jobs:
         run: npm ci
 
       - name: Compilar la aplicacion Ionic
-        run: npx ng build --configuration production --base-href /proyectonacho/
-
-      - name: Verificar carpeta de salida
-        run: ls -la dist/ || ls -la www/ || true
+        run: npx ng build --configuration production --base-href /proyectonacho/ --output-path www
 
       - name: Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/proyectonacho/browser
+          folder: www/browser
           branch: gh-pages
