@@ -1,0 +1,37 @@
+{
+  "APP": {
+    "TITLE": "My Pro Notes",
+    "SEARCH_PLACEHOLDER": "Search notes...",
+    "EMPTY_TITLE": "No notes yet",
+    "EMPTY_SUBTITLE": "Tap the + button to create your first note.",
+    "ADD_NOTE": "New Note",
+    "EDIT_NOTE": "Edit Note",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "DELETE": "Delete"
+  },
+  "FORM": {
+    "TITLE": "Title",
+    "TITLE_REQUIRED": "Title is required.",
+    "CONTENT": "Content",
+    "CONTENT_REQUIRED": "Content cannot be empty.",
+    "CATEGORY": "Category",
+    "CATEGORIES": {
+      "WORK": "Work",
+      "PERSONAL": "Personal",
+      "STUDIES": "Studies"
+    }
+  },
+  "STATS": {
+    "TITLE": "Statistics",
+    "TOTAL_NOTES": "Total Notes",
+    "BREAKDOWN": "Breakdown by Category"
+  },
+  "PROFILE": {
+    "TITLE": "Settings",
+    "USER_NAME": "Dev Student",
+    "ROLE": "Ionic Developer",
+    "LANGUAGE": "App Language",
+    "SELECT_LANG": "Select Language"
+  }
+}

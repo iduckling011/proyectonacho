@@ -1,0 +1,37 @@
+{
+  "APP": {
+    "TITLE": "Mis Notas Pro",
+    "SEARCH_PLACEHOLDER": "Buscar notas...",
+    "EMPTY_TITLE": "No hay notas aún",
+    "EMPTY_SUBTITLE": "Toca el botón + para crear tu primera nota.",
+    "ADD_NOTE": "Nueva Nota",
+    "EDIT_NOTE": "Editar Nota",
+    "SAVE": "Guardar",
+    "CANCEL": "Cancelar",
+    "DELETE": "Eliminar"
+  },
+  "FORM": {
+    "TITLE": "Título",
+    "TITLE_REQUIRED": "El título es obligatorio.",
+    "CONTENT": "Contenido",
+    "CONTENT_REQUIRED": "El contenido no puede estar vacío.",
+    "CATEGORY": "Categoría",
+    "CATEGORIES": {
+      "WORK": "Trabajo",
+      "PERSONAL": "Personal",
+      "STUDIES": "Estudios"
+    }
+  },
+  "STATS": {
+    "TITLE": "Estadísticas",
+    "TOTAL_NOTES": "Total de Notas",
+    "BREAKDOWN": "Desglose por Categoría"
+  },
+  "PROFILE": {
+    "TITLE": "Ajustes",
+    "USER_NAME": "Estudiante Dev",
+    "ROLE": "Desarrollador Ionic",
+    "LANGUAGE": "Idioma de la App",
+    "SELECT_LANG": "Seleccionar Idioma"
+  }
+}
