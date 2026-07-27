@@ -1,0 +1,7 @@
+{
+  "name": "proyectodesolis",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
