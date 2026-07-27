@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Variables Locales de Color y Estilos
+   ========================================================================== */
+$bg-main: #f8fafc;
+$card-bg: #ffffff;
+$text-dark: #0f172a;
+$text-muted: #64748b;
+$border-light: #e2e8f0;
+$primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+$primary-indigo: #4f46e5;
+
+/* ==========================================================================
+   Animaciones
+   ========================================================================== */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Estructura Principal
+   ========================================================================== */
+ion-content {
+  --background: #{$bg-main};
+}
+
+ion-toolbar {
+  --background: #{$primary-gradient};
+  --color: #ffffff;
+  --border-width: 0;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+
+  ion-title {
+    font-weight: 800;
+    font-size: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   Tarjeta Perfil / Hero
+   ========================================================================== */
+.info-card {
+  margin: 0 0 28px 0;
+  background: $card-bg;
+  border-radius: 24px;
+  border: 1px solid $border-light;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  padding: 12px 0;
+  animation: slideUpFade 0.4s ease-out;
+
+  .avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
+
+    ion-icon {
+      font-size: 90px;
+      color: $primary-indigo;
+      filter: drop-shadow(0 6px 12px rgba(79, 70, 229, 0.3));
+    }
+  }
+
+  ion-card-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: $text-dark;
+    letter-spacing: -0.4px;
+  }
+
+  ion-card-subtitle {
+    font-weight: 700;
+    color: $primary-indigo;
+    margin-top: 4px;
+    font-size: 0.9rem;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 12px 16px 0 16px;
+  }
+}
+
+/* ==========================================================================
+   Opciones y Listas de Ajustes
+   ========================================================================== */
+ion-list-header {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  padding-left: 8px;
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: $text-dark;
+    letter-spacing: -0.3px;
+  }
+}
+
+ion-list {
+  background: transparent;
+
+  ion-item {
+    --background: #{$card-bg};
+    --border-radius: 14px;
+    margin-bottom: 10px;
+    border: 1px solid $border-light;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+    transition: all 0.2s ease;
+
+    &:hover {
+      --background: #f1f5f9;
+      transform: translateX(4px);
+    }
+
+    ion-icon {
+      font-size: 22px;
+    }
+
+    h2 {
+      font-weight: 700;
+      color: $text-dark;
+      font-size: 0.98rem;
+    }
+
+    p {
+      color: $text-muted;
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+  }
+}
+
+/* ==========================================================================
+   Diseño Responsivo (Tablets & Desktop)
+   ========================================================================== */
+@media (min-width: 768px) {
+  ion-content {
+    --padding-start: 18%;
+    --padding-end: 18%;
+  }
+}
+
+@media (min-width: 1200px) {
+  ion-content {
+    --padding-start: 26%;
+    --padding-end: 26%;
+  }
+}

@@ -1,17 +1,86 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>
-      Tab 3
+      {{ lang === 'es' ? 'Ajustes' : 'Settings' }}
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleLanguage()">
+        <ion-icon slot="icon-only" name="globe-outline"></ion-icon>
+        <span style="margin-left: 4px; font-weight: bold; font-size: 0.85rem;">
+          {{ lang.toUpperCase() }}
+        </span>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <!-- Tarjeta de Perfil -->
+  <ion-card class="info-card">
+    <ion-card-header>
+      <div class="avatar-container">
+        <ion-icon name="person-circle-outline" color="primary"></ion-icon>
+      </div>
+      <ion-card-title class="ion-text-center">QuickNotes App</ion-card-title>
+      <ion-card-subtitle class="ion-text-center">v1.0.0 (Ionic Page Navigation)</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <p>{{ lang === 'es' ? 'Aplicación desarrollada con arquitectura basada en rutas y navegación por páginas.' : 'App developed using route-based architecture and page navigation.' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Opciones de Configuración -->
+  <ion-list-header>
+    <ion-label>
+      <h2><strong>{{ lang === 'es' ? 'Configuración' : 'Settings' }}</strong></h2>
+    </ion-label>
+  </ion-list-header>
+
+  <ion-list [inset]="true">
+    <ion-item button (click)="toggleLanguage()">
+      <ion-icon slot="start" name="language-outline" color="secondary"></ion-icon>
+      <ion-label>
+        <h2>{{ lang === 'es' ? 'Idioma de la app' : 'App Language' }}</h2>
+        <p>{{ lang === 'es' ? 'Español (ES)' : 'English (EN)' }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button (click)="clearAllData()">
+      <ion-icon slot="start" name="trash-bin-outline" color="danger"></ion-icon>
+      <ion-label color="danger">
+        <h2>{{ lang === 'es' ? 'Borrar todas las notas' : 'Clear all notes' }}</h2>
+        <p>{{ lang === 'es' ? 'Elimina los datos guardados en LocalStorage' : 'Removes stored data from LocalStorage' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Detalles Técnicos / DevOps -->
+  <ion-list-header>
+    <ion-label>
+      <h2><strong>{{ lang === 'es' ? 'Información Técnica' : 'Technical Info' }}</strong></h2>
+    </ion-label>
+  </ion-list-header>
+
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-icon slot="start" name="code-working-outline" color="tertiary"></ion-icon>
+      <ion-label>
+        <h2>Framework</h2>
+        <p>Ionic Standalone + Angular Router</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" name="logo-github" color="dark"></ion-icon>
+      <ion-label>
+        <h2>CI/CD Pipeline</h2>
+        <p>GitHub Actions & GitHub Pages</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

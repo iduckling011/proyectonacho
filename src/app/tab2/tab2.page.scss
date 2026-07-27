@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Variables Locales de Color y Estilos
+   ========================================================================== */
+$bg-main: #f8fafc;
+$card-bg: #ffffff;
+$text-dark: #0f172a;
+$text-muted: #64748b;
+$border-light: #e2e8f0;
+$primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+
+/* ==========================================================================
+   Animaciones
+   ========================================================================== */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Estructura Principal
+   ========================================================================== */
+ion-content {
+  --background: #{$bg-main};
+}
+
+ion-toolbar {
+  --background: #{$primary-gradient};
+  --color: #ffffff;
+  --border-width: 0;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+
+  ion-title {
+    font-weight: 800;
+    font-size: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   Tarjetas del Resumen / Dashboard
+   ========================================================================== */
+.summary-card {
+  margin: 0;
+  background: $card-bg;
+  border-radius: 20px;
+  border: 1px solid $border-light;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideUpFade 0.4s ease-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
+    border-color: #cbd5e1;
+  }
+
+  ion-card-header {
+    padding-bottom: 2px;
+  }
+
+  ion-icon {
+    font-size: 42px;
+    margin-bottom: 8px;
+  }
+
+  ion-card-subtitle {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 8px 0;
+    color: $text-dark;
+    letter-spacing: -1px;
+  }
+}
+
+/* ==========================================================================
+   Lista de Desglose
+   ========================================================================== */
+ion-list-header {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  padding-left: 8px;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: $text-dark;
+    letter-spacing: -0.3px;
+  }
+}
+
+ion-list {
+  background: transparent;
+
+  ion-item {
+    --background: #{$card-bg};
+    --border-radius: 14px;
+    margin-bottom: 10px;
+    border: 1px solid $border-light;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateX(3px);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    ion-icon {
+      font-size: 24px;
+    }
+
+    h2 {
+      font-weight: 700;
+      color: $text-dark;
+      font-size: 1rem;
+    }
+
+    ion-badge {
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+  }
+}
+
+/* ==========================================================================
+   Diseño Responsivo (Tablets & Desktop)
+   ========================================================================== */
+@media (min-width: 768px) {
+  ion-content {
+    --padding-start: 18%;
+    --padding-end: 18%;
+  }
+}
+
+@media (min-width: 1200px) {
+  ion-content {
+    --padding-start: 26%;
+    --padding-end: 26%;
+  }
+}

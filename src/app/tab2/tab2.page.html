@@ -1,17 +1,70 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>
-      Tab 2
+      {{ lang === 'es' ? 'Estadísticas' : 'Statistics' }}
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleLanguage()">
+        <ion-icon slot="icon-only" name="globe-outline"></ion-icon>
+        <span style="margin-left: 4px; font-weight: bold; font-size: 0.85rem;">
+          {{ lang.toUpperCase() }}
+        </span>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <!-- Tarjetas de Resumen General -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card class="summary-card ion-text-center">
+          <ion-card-header>
+            <ion-icon name="document-text-outline" color="primary"></ion-icon>
+            <ion-card-subtitle>{{ lang === 'es' ? 'Total Notas' : 'Total Notes' }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <h1>{{ totalNotes }}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card class="summary-card ion-text-center">
+          <ion-card-header>
+            <ion-icon name="folder-open-outline" color="tertiary"></ion-icon>
+            <ion-card-subtitle>{{ lang === 'es' ? 'Categorías' : 'Categories' }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <h1>{{ categories.length }}</h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Lista de Desglose por Categoría -->
+  <ion-list-header>
+    <ion-label>
+      <h2><strong>{{ lang === 'es' ? 'Notas por Categoría' : 'Notes by Category' }}</strong></h2>
+    </ion-label>
+  </ion-list-header>
+
+  <ion-list [inset]="true">
+    <ion-item *ngFor="let cat of categoryStats">
+      <ion-icon slot="start" name="pricetag-outline" color="secondary"></ion-icon>
+      <ion-label>
+        <h2>{{ cat.name }}</h2>
+      </ion-label>
+      <ion-badge slot="end" color="primary">
+        {{ cat.count }} {{ lang === 'es' ? (cat.count === 1 ? 'nota' : 'notas') : (cat.count === 1 ? 'note' : 'notes') }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

@@ -1,17 +1,115 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 1
+      {{ lang === 'es' ? 'Mis Notas' : 'My Notes' }}
     </ion-title>
+    <ion-buttons slot="end">
+      <!-- Botón Navegar a Estadísticas -->
+      <ion-button routerLink="/stats">
+        <ion-icon slot="icon-only" name="stats-chart-outline"></ion-icon>
+      </ion-button>
+      <!-- Botón Navegar a Ajustes -->
+      <ion-button routerLink="/settings">
+        <ion-icon slot="icon-only" name="cog-outline"></ion-icon>
+      </ion-button>
+      <!-- Botón Cambio de Idioma -->
+      <ion-button (click)="toggleLanguage()">
+        <ion-icon slot="icon-only" name="globe-outline"></ion-icon>
+        <span style="margin-left: 4px; font-weight: bold; font-size: 0.85rem;">
+          {{ lang.toUpperCase() }}
+        </span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="light">
+    <ion-searchbar 
+      [placeholder]="lang === 'es' ? 'Buscar notas...' : 'Search notes...'" 
+      (ionInput)="filterNotes($event)"
+      [animated]="true">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div *ngIf="filteredNotes.length === 0" class="empty-state">
+    <ion-icon name="document-text-outline"></ion-icon>
+    <p>{{ lang === 'es' ? 'No hay notas registradas' : 'No notes found' }}</p>
+    <ion-note>{{ lang === 'es' ? 'Toca el botón + para agregar una nueva nota' : 'Tap + button to add a new note' }}</ion-note>
+  </div>
+
+  <ion-list *ngIf="filteredNotes.length > 0">
+    <ion-item-sliding *ngFor="let note of filteredNotes">
+      <ion-item button (click)="openEditModal(note)">
+        <ion-label>
+          <h2><strong>{{ note.title }}</strong></h2>
+          <p>{{ note.content }}</p>
+          <ion-note color="medium" style="font-size: 0.75rem;">
+            {{ note.date | date:'short' }}
+          </ion-note>
+        </ion-label>
+        <ion-badge slot="end" [color]="note.category === 'Trabajo' || note.category === 'Work' ? 'tertiary' : 'secondary'">
+          {{ note.category }}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteNote(note.id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- Botón Flotante para agregar nota -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openAddModal()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Modal para Agregar / Editar Nota -->
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>
+            {{ currentNote.id ? (lang === 'es' ? 'Editar Nota' : 'Edit Note') : (lang === 'es' ? 'Nueva Nota' : 'New Note') }}
+          </ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+              <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-item class="ion-margin-bottom">
+          <ion-label position="stacked">{{ lang === 'es' ? 'Título *' : 'Title *' }}</ion-label>
+          <ion-input [(ngModel)]="currentNote.title" [placeholder]="lang === 'es' ? 'Escribe el título' : 'Enter title'"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-bottom">
+          <ion-label position="stacked">{{ lang === 'es' ? 'Categoría' : 'Category' }}</ion-label>
+          <ion-select [(ngModel)]="currentNote.category" [placeholder]="lang === 'es' ? 'Selecciona una' : 'Select one'">
+            <ion-select-option value="Personal">{{ lang === 'es' ? 'Personal' : 'Personal' }}</ion-select-option>
+            <ion-select-option value="Trabajo">{{ lang === 'es' ? 'Trabajo' : 'Work' }}</ion-select-option>
+            <ion-select-option value="Estudios">{{ lang === 'es' ? 'Estudios' : 'Studies' }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="ion-margin-bottom">
+          <ion-label position="stacked">{{ lang === 'es' ? 'Contenido *' : 'Content *' }}</ion-label>
+          <ion-textarea [(ngModel)]="currentNote.content" rows="6" [placeholder]="lang === 'es' ? 'Escribe tu nota aquí...' : 'Write your note here...'"></ion-textarea>
+        </ion-item>
+
+        <ion-button expand="block" color="success" class="ion-margin-top" (click)="saveNote()">
+          <ion-icon slot="start" name="save-outline"></ion-icon>
+          {{ lang === 'es' ? 'Guardar Nota' : 'Save Note' }}
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>

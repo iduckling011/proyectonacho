@@ -1,0 +1,218 @@
+/* ==========================================================================
+   Variables Locales de Color y Estilos
+   ========================================================================== */
+$bg-main: #f8fafc;
+$card-bg: #ffffff;
+$text-dark: #0f172a;
+$text-muted: #64748b;
+$border-light: #e2e8f0;
+$primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+$primary-indigo: #4f46e5;
+
+/* ==========================================================================
+   Animaciones Nativas
+   ========================================================================== */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Estructura Principal
+   ========================================================================== */
+ion-content {
+  --background: #{$bg-main};
+}
+
+ion-toolbar {
+  --background: #{$primary-gradient};
+  --color: #ffffff;
+  --border-width: 0;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+
+  ion-title {
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.4px;
+  }
+
+  ion-button {
+    --color: #ffffff;
+    font-weight: 600;
+  }
+}
+
+ion-searchbar {
+  --background: #{$card-bg};
+  --border-radius: 14px;
+  --box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  --placeholder-color: #94a3b8;
+  --icon-color: #{$primary-indigo};
+  padding: 10px 16px;
+}
+
+/* ==========================================================================
+   Estado Vacío (Empty State)
+   ========================================================================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 55vh;
+  text-align: center;
+  padding: 32px 24px;
+  animation: slideUpFade 0.4s ease-out;
+
+  ion-icon {
+    font-size: 90px;
+    color: #c7d2fe;
+    margin-bottom: 20px;
+    animation: pulseGlow 3s infinite ease-in-out;
+  }
+
+  p {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: $text-dark;
+    margin: 0 0 8px 0;
+  }
+
+  ion-note {
+    font-size: 0.95rem;
+    color: $text-muted;
+    max-width: 280px;
+  }
+}
+
+/* ==========================================================================
+   Tarjetas e Ítems de Notas
+   ========================================================================== */
+ion-list {
+  background: transparent;
+  padding: 0;
+}
+
+ion-item-sliding {
+  margin-bottom: 14px;
+  border-radius: 18px;
+  border: 1px solid $border-light;
+  background: $card-bg;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideUpFade 0.35s ease-out;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    border-color: #cbd5e1;
+  }
+}
+
+ion-item {
+  --background: transparent;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --inner-padding-end: 8px;
+  --border-width: 0;
+
+  h2 {
+    color: $text-dark;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Badges de Categoría */
+ion-badge {
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.4px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Botón Flotante Moderno */
+ion-fab-button {
+  --background: #{$primary-gradient};
+  --color: #ffffff;
+  --box-shadow: 0 12px 28px rgba(79, 70, 229, 0.45);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover {
+    transform: scale(1.12);
+  }
+}
+
+/* Modal Estilizado */
+ion-modal {
+  --border-radius: 20px;
+  
+  ion-toolbar {
+    --background: #{$primary-gradient};
+  }
+
+  ion-item {
+    --background: #f1f5f9;
+    --border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid $border-light;
+  }
+
+  ion-button {
+    --background: #10b981;
+    --border-radius: 14px;
+    font-weight: 700;
+    height: 48px;
+  }
+}
+
+/* ==========================================================================
+   Diseño Responsivo (Tablets & Desktop)
+   ========================================================================== */
+@media (min-width: 768px) {
+  ion-content {
+    --padding-start: 18%;
+    --padding-end: 18%;
+  }
+
+  ion-item-sliding {
+    margin-bottom: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  ion-content {
+    --padding-start: 26%;
+    --padding-end: 26%;
+  }
+}
