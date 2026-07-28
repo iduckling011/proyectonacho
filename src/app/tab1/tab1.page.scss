@@ -122,7 +122,7 @@ ion-item-sliding {
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    border-color: #cbd5e1;
+    border-color: #0073ff;
   }
 }
 
@@ -182,7 +182,7 @@ ion-modal {
   }
 
   ion-item {
-    --background: #f1f5f9;
+    --background: #0054e9;
     --border-radius: 12px;
     margin-bottom: 16px;
     border: 1px solid $border-light;
