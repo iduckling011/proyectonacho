@@ -1,34 +1,38 @@
 name: Build and Deploy Ionic App
+# Este flujo se ejecuta automáticamente cada vez que hacemos un push a la rama main
+on: 
+  push: 
+    branches: 
+      - main 
 
-on:
-  push:
-    branches:
-      - main
+permissions: 
+  contents: write 
 
-permissions:
-  contents: write
+jobs: 
+  build-and-deploy: 
+    runs-on: ubuntu-latest 
+    steps: 
+      # Paso 1: Descarga la última versión del código fuente del repositorio
+      - name: Checkout del codigo 
+        uses: actions/checkout@v4 
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+      # Paso 2: Prepara el entorno virtual instalando Node.js en su versión 20
+      - name: Configurar Node.js 
+        uses: actions/setup-node@v4 
+        with: 
+          node-version: '20' 
 
-    steps:
-      - name: Checkout del codigo
-        uses: actions/checkout@v4
+      # Paso 3: Realiza una instalación limpia de las dependencias del proyecto
+      - name: Instalar dependencias 
+        run: npm ci 
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+      # Paso 4: Compila la aplicación de Ionic para producción ajustando la ruta base
+      - name: Compilar la aplicacion Ionic 
+        run: npx ng build --configuration production --base-href /proyectonacho/ --output-path www 
 
-      - name: Instalar dependencias
-        run: npm ci
-
-      - name: Compilar la aplicacion Ionic
-        run: npx ng build --configuration production --base-href /proyectonacho/ --output-path www
-
-      - name: Desplegar en GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: www/browser
+      # Paso 5: Toma los archivos compilados y los publica automáticamente en GitHub Pages
+      - name: Desplegar en GitHub Pages 
+        uses: JamesIves/github-pages-deploy-action@v4 
+        with: 
+          folder: www/browser 
           branch: gh-pages
