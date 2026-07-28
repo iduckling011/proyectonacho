@@ -12,9 +12,9 @@
   },
   "FORM": {
     "TITLE": "Title",
-    "TITLE_REQUIRED": "Title is required.",
+    "TITLE_REQUIRED": "TITLE IS REQUIRED.",
     "CONTENT": "Content",
-    "CONTENT_REQUIRED": "Content cannot be empty.",
+    "CONTENT_REQUIRED": "CONTENT CANNOT BE EMPTY.",
     "CATEGORY": "Category",
     "CATEGORIES": {
       "WORK": "Work",
