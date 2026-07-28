@@ -12,9 +12,9 @@
   },
   "FORM": {
     "TITLE": "Título",
-    "TITLE_REQUIRED": "El título es obligatorio.",
+    "TITLE_REQUIRED": "EL TÍTULO ES OBLIGATORIO.",
     "CONTENT": "Contenido",
-    "CONTENT_REQUIRED": "El contenido no puede estar vacío.",
+    "CONTENT_REQUIRED": "EL CONTENIDO NO PUEDE ESTAR VACÍO.",
     "CATEGORY": "Categoría",
     "CATEGORIES": {
       "WORK": "Trabajo",
